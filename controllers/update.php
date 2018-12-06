@@ -2,7 +2,7 @@
    include('connection.php');
 
    $id = $_GET['id'];
-   echo $id;
+   $type = $_GET['type'];
    
    $selectedAttr = $_POST['selectAttr'];
 
@@ -51,20 +51,39 @@
          break;
    }
 
-   $qry = "UPDATE $tbl_name SET username='$username', attribute='$attribute', op='$op', value='$value' WHERE id = '$id'";
-
+   $tbl = ($type == 1) ? "radcheck" : "radreply" ;
+   // DELETE FIRST
+   $qry = "DELETE FROM $tbl WHERE id = '$id'";
+   
    if ( $conn->query($qry) === TRUE ) {
-      echo "
-         <script>
-            alert('Updated succcessfully.');
-            setTimeout(function() {
-               window.location = '../index.php';
-            });
-         </script>
-      ";
+      // INSERT AGAIN
+      $qry = "INSERT INTO $tbl_name(username, attribute, op, value) VALUES('$username', '$attribute', '$op', '$value')";
+
+      if ( $conn->query($qry) === TRUE ) {
+         echo "
+            <script>
+               alert('Updated succcessfully.');
+               setTimeout(function() {
+                  window.location = '../index.php';
+               });
+            </script>
+         ";
+      }
+      else {
+         echo "Error occured in: " . $conn->error;
+      }
    }
    else {
-      echo "Error occured in: " . $conn->error;
+      echo "
+            <script>
+               alert('Something went wrong.');
+               setTimeout(function() {
+                  window.location = '../index.php';
+               });
+            </script>
+         ";
    }
 
    $conn->close();
+
+   // $qry = "UPDATE $tbl_name SET username='$username', attribute='$attribute', op='$op', value='$value' WHERE id = '$id'";

@@ -2,10 +2,13 @@
    include('./controllers/connection.php');
    include('./controllers/retrieve.php');
 
-   if ( isset($_GET['id']) ) {
+   if ( isset($_GET['id']) && isset($_GET['type']) ) {
       $id = $_GET['id'];
+      $type = $_GET['type'];
+      $tbl_name = ($type == 1) ? 'radcheck' : 'radreply';
 
-      $qry = "SELECT * FROM radcheck WHERE id = '$id'";
+
+      $qry = "SELECT * FROM $tbl_name WHERE id = '$id'";
       $result = $conn->query($qry);
       $row = $result->fetch_assoc();
       
@@ -31,7 +34,7 @@
 <body>
    <div class="main-container">
       <div class="update-container">
-         <form action="./controllers/edit.php?id=<?= $id; ?>" method="POST" autocomplete="off">
+         <form action="./controllers/update.php?id=<?= $id; ?>&type=<?= $type; ?>" method="POST" autocomplete="off">
             <table>
                <tr>
                   <td>Username</td>

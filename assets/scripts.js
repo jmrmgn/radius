@@ -2,6 +2,8 @@ var valueContainer = document.getElementById("valueContainer");
 var operator = document.getElementById("operator");
 var selectAttr = document.getElementById("selectAttr");
 
+selectAttrHandler();
+
 selectAttr.addEventListener("change", selectAttrHandler);
 
    function selectAttrHandler() {

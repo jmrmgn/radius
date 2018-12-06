@@ -58,7 +58,7 @@
          </div>
          <table>
             <thead>
-               <th>ID</th>
+               <th>#</th>
                <th>Username</th>
                <th>Attribute</th>
                <th>Operator</th>
@@ -67,18 +67,20 @@
             </thead>
             <tbody>
                <?php if($result->num_rows > 0): ?>
+                  <?php $count = 1; ?>
                   <?php while( $row = $result->fetch_assoc() ): ?>
                      <tr>
-                        <td><?= $row['id']; ?></td>
+                        <td><?= $count; ?></td>
                         <td><?= $row['username']; ?></td>
                         <td><?= $row['attribute']; ?></td>
                         <td><?= $row['op']; ?></td>
                         <td><?= $row['value']; ?></td>
                         <td>
-                           <a href="edit.php?id=<?= $row['id']; ?>">Edit</a>
+                           <a href="edit.php?id=<?= $row['id']; ?>&type=<?= ($row['op'] == ":=") ? 1 : 2; ?>">Edit</a>
                            <a href="delete.php?id=<?= $row['id']; ?>">Delete</a>
                         </td>
                      </tr>
+                     <?php $count++; ?>
                   <?php endwhile; ?>
                <?php else: ?>
                   <tr>
