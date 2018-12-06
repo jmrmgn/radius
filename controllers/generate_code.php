@@ -1,5 +1,4 @@
 <?php
-   include('connection.php');
 
    function random_num($size) {
       $alpha_key = '';
@@ -28,11 +27,7 @@
       // return str_shuffle($alpha_key . $key . $special_key);
       
       return ucfirst(str_shuffle(strtolower($alpha_key . $key)));
-      
-   }
-   
-   $qry = " SELECT * FROM radcheck
-            UNION
-            SELECT * FROM radreply";
-   $result = $conn->query($qry);
 
+   }
+
+   echo json_encode(random_num(rand(12, 12)));

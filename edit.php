@@ -38,7 +38,10 @@
             <table>
                <tr>
                   <td>Username</td>
-                  <td><input type="text" name="username" placeholder="Enter username" value="<?= $row['username']; ?>" required></td>
+                  <td>
+                     <input type="text" id="txtUsername" name="username" placeholder="Enter username" value="<?= $row['username']; ?>" required>
+                     <button type="button" id="btnGenerate">Generate</button>
+                  </td>
                </tr>
                <tr>
                   <td id="small-td">Previous Attribute</td>

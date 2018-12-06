@@ -8,8 +8,7 @@
 
    if ( $conn->connect_error ) {
       die("Connection failed: " . $conn->connect_error());
-   }
-   
+   }   
 
    // Attr array
    $attributes = [
@@ -22,5 +21,6 @@
       "7" => "Idle-Timeout",
       "8" => "Session-Timeout"
    ];
+   
 
    

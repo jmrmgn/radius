@@ -20,7 +20,10 @@
             <table>
                <tr>
                   <td>Username</td>
-                  <td><input type="text" name="username" placeholder="Enter username" required></td>
+                  <td>
+                     <input type="text" id="txtUsername" name="username" placeholder="Enter username" readonly required value="<?= random_num(rand(12,12)); ?>">
+                     <button type="button" id="btnGenerate">Generate</button>
+                  </td>
                </tr>
                <tr>
                   <td>Attribute</td>

@@ -2,14 +2,34 @@ var valueContainer = document.getElementById("valueContainer");
 var operator = document.getElementById("operator");
 var selectAttr = document.getElementById("selectAttr");
 var txtSearch = document.getElementById("txtSearch");
+var btnGenerate = document.getElementById("btnGenerate");
 
 selectAttrHandler();
+
+btnGenerate.addEventListener("click", generateCode);
 
 if ( txtSearch !== null ) {
    txtSearch.addEventListener("input", getUsers);
 }
 
 selectAttr.addEventListener("change", selectAttrHandler);
+
+function generateCode() {
+   var xhr = new XMLHttpRequest();
+
+   xhr.open('GET', 'controllers/generate_code.php', true);
+
+   xhr.onload = function() {
+      if ( xhr.status == 200 ) {
+         document.getElementById("txtUsername").value = JSON.parse(this.responseText);
+      }
+      else {
+         console.log(this.responseText);
+      }
+   }
+
+   xhr.send();
+}
 
 function selectAttrHandler() {
    var id = selectAttr.value;
@@ -18,7 +38,7 @@ function selectAttrHandler() {
    switch (id) {
       case "1":
          output += `
-            <input type="text" name="value" id="value" placeholder="Enter password" required/>
+            <input type="text" name="value" id="value" placeholder="Enter password" required />            
          `
          break;
       
