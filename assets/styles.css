@@ -2,6 +2,16 @@ body {
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+a {
+   text-decoration: none;
+   font-size: 13px;
+}
+
+a:visited {
+   text-decoration: none;
+}
+
+
 .main-container {
    width: 70%;
    height: auto;
@@ -10,7 +20,7 @@ body {
    padding: 2em;
 }
 
-.insert-container, .retrieve-container {
+.insert-container, .retrieve-container, .update-container {
    width: 100%;
    box-sizing: border-box;
    margin-bottom: 30px;
@@ -34,7 +44,8 @@ body {
    text-align: center;
 }
 
-.insert-container table {
+.insert-container table,
+.update-container table {
    margin: 0 auto;
 }
 
@@ -43,5 +54,16 @@ body {
    height: 30px;
    margin: 0 auto;
    text-align: right;
+}
+
+.insert-container table td,
+.update-container table td {
+   padding: 10px;
+   box-sizing: border-box;
+}
+
+td#small-td {
+   font-size: 11px;
+   color: #666666
 }
 

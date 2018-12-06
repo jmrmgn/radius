@@ -1,5 +1,8 @@
 <?php
    include('connection.php');
+
+   $id = $_GET['id'];
+   echo $id;
    
    $selectedAttr = $_POST['selectAttr'];
 
@@ -48,12 +51,12 @@
          break;
    }
 
-   $qry = "INSERT INTO $tbl_name(username, attribute, op, value) VALUES('$username', '$attribute', '$op', '$value')";
+   $qry = "UPDATE $tbl_name SET username='$username', attribute='$attribute', op='$op', value='$value' WHERE id = '$id'";
 
    if ( $conn->query($qry) === TRUE ) {
       echo "
          <script>
-            alert('Successfully added.');
+            alert('Updated succcessfully.');
             setTimeout(function() {
                window.location = '../index.php';
             });
