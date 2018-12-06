@@ -1,6 +1,7 @@
 <?php
    include('./controllers/connection.php');
    include('./controllers/retrieve.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +55,7 @@
 
       <div class="retrieve-container">
          <div class="search-container">
-            <input type="text" placeholder="Search here...">
+            <input type="text" id="txtSearch" placeholder="Search here...">
          </div>
          <table>
             <thead>
@@ -65,7 +66,7 @@
                <th>Value</th>
                <th>Action</th>
             </thead>
-            <tbody>
+            <tbody id="usersData">
                <?php if($result->num_rows > 0): ?>
                   <?php $count = 1; ?>
                   <?php while( $row = $result->fetch_assoc() ): ?>
