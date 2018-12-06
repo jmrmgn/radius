@@ -81,7 +81,7 @@
                         <td><?= $row['value']; ?></td>
                         <td>
                            <a href="edit.php?id=<?= $row['id']; ?>&type=<?= ($row['op'] == ":=") ? 1 : 2; ?>">Edit</a>
-                           <a href="delete.php?id=<?= $row['id']; ?>">Delete</a>
+                           <a href="delete.php?id=<?= $row['id']; ?>&type=<?= ($row['op'] == ":=") ? 1 : 2; ?>" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                         </td>
                      </tr>
                      <?php $count++; ?>

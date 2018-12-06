@@ -113,7 +113,8 @@ function getUsers() {
                      <td>${users[i].value}</td>
                      <td>
                         <a href="edit.php?id=${users[i].id}&type=${ users[i].op == ':=' ? 1 : 2 }">Edit</a>
-                        <a href="delete.php?id=${users[i].id}">Delete</a>
+                        <a href="delete.php?id=${users[i].id}&type=${ users[i].op == ':=' ? 1 : 2 }" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+
                      </td>
                   </tr>
                `
