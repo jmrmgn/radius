@@ -1,5 +1,6 @@
 <?php
    include('./controllers/connection.php');
+   include('./controllers/retrieve.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,39 +15,41 @@
 <body>
    <div class="main-container">
       <div class="insert-container">
-         <table>
-            <tr>
-               <td>Username</td>
-               <td><input type="text"></td>
-            </tr>
-            <tr>
-               <td>Attribute</td>
-               <td>
-                  <select name="selectAttr" id="selectAttr">
-                     <?php foreach($attributes as $attribute => $val): ?>
-                        <option value=<?= $attribute; ?>><?= $val; ?></option>
-                     <?php endforeach; ?>
-                  </select>
-               </td>
-            </tr>
-            <tr>
-               <td>Operator</td>
-               <td>
-                  <input type="text" name="operator" id="operator" value=":=" disabled>
-               </td>
-            </tr>
-            <tr>
-               <td>Value</td>
-               <td id="valueContainer">
-                  <input type="text" name="value" id="value" placeholder="Enter password">
-               </td>
-            </tr>
-            <tr align="center">
-               <td colspan="2">
-                  <input type="submit" value="Insert">
-               </td>
-            </tr>
-         </table>
+         <form action="controllers/insert.php" method="POST" autocomplete="off">
+            <table>
+               <tr>
+                  <td>Username</td>
+                  <td><input type="text" name="username" placeholder="Enter username" required></td>
+               </tr>
+               <tr>
+                  <td>Attribute</td>
+                  <td>
+                     <select name="selectAttr" id="selectAttr" required>
+                        <?php foreach($attributes as $attribute => $val): ?>
+                           <option value=<?= $attribute; ?>><?= $val; ?></option>
+                        <?php endforeach; ?>
+                     </select>
+                  </td>
+               </tr>
+               <tr>
+                  <td>Operator</td>
+                  <td>
+                     <input type="text" name="operator" id="operator" value=":=" readonly>
+                  </td>
+               </tr>
+               <tr>
+                  <td>Value</td>
+                  <td id="valueContainer">
+                     <input type="text" name="value" id="value" placeholder="Enter password" required>
+                  </td>
+               </tr>
+               <tr align="center">
+                  <td colspan="2">
+                     <input type="submit" value="Insert">
+                  </td>
+               </tr>
+            </table>
+         </form>
       </div>
 
       <div class="retrieve-container">
@@ -63,15 +66,25 @@
                <th>Action</th>
             </thead>
             <tbody>
-               <tr>
-                  <td colspan="6" style="text-align: center;">No user found...</td>
-                  <!-- <td>Test</td>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>Test</td> -->
-               </tr>
+               <?php if($result->num_rows > 0): ?>
+                  <?php while( $row = $result->fetch_assoc() ): ?>
+                     <tr>
+                        <td><?= $row['id']; ?></td>
+                        <td><?= $row['username']; ?></td>
+                        <td><?= $row['attribute']; ?></td>
+                        <td><?= $row['op']; ?></td>
+                        <td><?= $row['value']; ?></td>
+                        <td>
+                           <a href="edit.php?id=<?= $row['id']; ?>">Edit</a>
+                           <a href="delete.php?id=<?= $row['id']; ?>">Delete</a>
+                        </td>
+                     </tr>
+                  <?php endwhile; ?>
+               <?php else: ?>
+                  <tr>
+                     <td colspan="6" style="text-align: center;">No user found...</td>
+                  </tr>
+               <?php endif; ?>
             </tbody>
          </table>
       </div>

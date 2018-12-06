@@ -9,7 +9,7 @@ selectAttr.addEventListener("change", function() {
    switch (id) {
       case "1":
          output += `
-            <input type="text" name="value" id="value" placeholder="Enter password"/>
+            <input type="text" name="value" id="value" placeholder="Enter password" required/>
          `
          break;
       
@@ -17,38 +17,33 @@ selectAttr.addEventListener("change", function() {
       case "7":
       case "8":
          output += `
-            <input type="text" name="value" id="value" placeholder="Enter no. of hours"/>
+            <input type="text" name="value" id="value" placeholder="Enter no. of hours" required/>
          `
          break;
 
       case "3":
          output += `
-            <small>From:</small> <input type="time" name="value_from" id="value_from"/>
-            <small>To:</small> <input type="time" name="value_to" id="value_to"/>
+            <small>From:</small> <input type="time" name="value_from" id="value_from" required/>
+            <small>To:</small> <input type="time" name="value_to" id="value_to" required/>
          `
          break;
 
       case "4":
          output += `
-            <input type="number" min="1" max="10" />
+            <input type="number" min="1" max="10" name="value" required />
          `
          break;
 
       case "5":
          output += `
-            <label>Datetime</label>
+            <input type="date" name="value_date" id="value_date" required/>
+            <input type="time" name="value_time" id="value_time" required/>
          `
          break;
       
       case "6":
          output += `
-            <input type="text" value="Reject" disabled />
-         `
-         break;
-      
-      case "7":
-         output += `
-            <input type="text" value="Reject" disabled />
+            <input type="text" value="Reject" name="value" readonly />
          `
          break;
 

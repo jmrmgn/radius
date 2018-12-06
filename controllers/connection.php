@@ -4,10 +4,10 @@
    $password = "";
    $db_name = "radiusdb";
 
-   $conn = mysqli_connect($servername, $username, $password, $db_name);
+   $conn = new mysqli($servername, $username, $password, $db_name);
 
-   if ( !$conn ) {
-      die("Connection failed: " . mysqli_connect_error());
+   if ( $conn->connect_error ) {
+      die("Connection failed: " . $conn->connect_error());
    }
 
    // Attr array
