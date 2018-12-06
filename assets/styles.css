@@ -1,0 +1,47 @@
+body {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.main-container {
+   width: 70%;
+   height: auto;
+   max-height: auto;
+   margin: 0 auto;
+   padding: 2em;
+}
+
+.insert-container, .retrieve-container {
+   width: 100%;
+   box-sizing: border-box;
+   margin-bottom: 30px;
+}
+
+.retrieve-container table {
+   margin: 0 auto;
+   border: 1px solid #f4f4f4;
+}
+
+.retrieve-container table th {
+   padding: 15px;
+   box-sizing: border-box;
+   border: 1px solid #f2f2f2;
+}
+
+.retrieve-container table td {
+   padding: 13px;
+   box-sizing: border-box;
+   border: 1px solid #f2f2f2;
+   text-align: center;
+}
+
+.insert-container table {
+   margin: 0 auto;
+}
+
+.search-container {
+   width: 59%;
+   height: 30px;
+   margin: 0 auto;
+   text-align: right;
+}
+
