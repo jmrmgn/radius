@@ -32,7 +32,7 @@
          break;
 
       case '5':
-         $value_date = date("F m Y", strtotime($_POST['value_date']));
+         $value_date = date("F d Y", strtotime($_POST['value_date']));
          $value = $value_date . " " . $_POST['value_time'];
          break;
 
