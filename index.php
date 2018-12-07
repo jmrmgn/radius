@@ -21,7 +21,8 @@
                <tr>
                   <td>Username</td>
                   <td>
-                     <input type="text" id="txtUsername" name="username" placeholder="Enter username" readonly required value="<?= random_num(rand(12,12)); ?>">
+                     <input type="text" id="txtUsername" name="username" placeholder="Enter username" required 
+                     value="<?= ( isset($_GET['prevUser']) ) ? $_GET['prevUser'] : '' ; ?>">
                      <button type="button" id="btnGenerate">Generate</button>
                   </td>
                </tr>
@@ -44,7 +45,8 @@
                <tr>
                   <td>Value</td>
                   <td id="valueContainer">
-                     <input type="text" name="value" id="value" placeholder="Enter password" required>
+                     <input type="text" name="value" id="txtPassword" placeholder="Enter password" required>
+                     <button type="button" id="btnGeneratePassword">Generate</button>
                   </td>
                </tr>
                <tr align="center">

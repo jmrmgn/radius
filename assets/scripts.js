@@ -8,11 +8,30 @@ selectAttrHandler();
 
 btnGenerate.addEventListener("click", generateCode);
 
+document.querySelector('.btnGeneratePassword').addEventListener("click", generateCodePass);
+
 if ( txtSearch !== null ) {
    txtSearch.addEventListener("input", getUsers);
 }
 
 selectAttr.addEventListener("change", selectAttrHandler);
+
+function generateCodePass() {
+   var xhr = new XMLHttpRequest();
+
+   xhr.open('GET', 'controllers/generate_code.php', true);
+
+   xhr.onload = function() {
+      if ( xhr.status == 200 ) {
+         document.getElementById("txtPassword").value = JSON.parse(this.responseText);
+      }
+      else {
+         console.log(this.responseText);
+      }
+   }
+
+   xhr.send();
+}
 
 function generateCode() {
    var xhr = new XMLHttpRequest();
@@ -38,7 +57,8 @@ function selectAttrHandler() {
    switch (id) {
       case "1":
          output += `
-            <input type="text" name="value" id="value" placeholder="Enter password" required />            
+            <input type="text" name="value" id="txtPassword" placeholder="Enter password" required>
+            <button type="button" class="btnGeneratePassword">Generate</button>
          `
          break;
       
@@ -81,6 +101,10 @@ function selectAttrHandler() {
    }
 
    valueContainer.innerHTML = output;
+
+   if ( document.querySelector('.btnGeneratePassword') !== null ) {
+      document.querySelector('.btnGeneratePassword').addEventListener("click", generateCodePass);
+   }
    
    if ( selectAttr.value == 7 || selectAttr.value == 8) {
       operator.value = "="

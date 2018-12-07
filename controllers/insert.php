@@ -55,7 +55,7 @@
          <script>
             alert('Successfully added.');
             setTimeout(function() {
-               window.location = '../index.php';
+               window.location = '../index.php?prevUser=" . $username . "';
             });
          </script>
       ";
