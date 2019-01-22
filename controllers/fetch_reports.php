@@ -100,3 +100,73 @@
 
    $result = mysqli_query($conn,"SELECT * FROM `radacct` LIMIT $offset, $total_records_per_page");
 
+   function load_pagination() {
+      global $page_no, $previous_page, $next_page, $total_no_of_pages;
+      echo "
+         <ul class='pagination'>         
+            <li ".(($page_no <= 1) ? "class='disabled'" : '')." >
+               <a ".(($page_no > 1) ? "href='?page=$previous_page'" : '' ) . ">Prev</a>
+            </li>";
+            if ($total_no_of_pages <= 10){  	 
+               for ($counter = 1; $counter <= $total_no_of_pages; $counter++){
+                  if ($counter == $page_no) {
+                     echo "<li><a class='active'>$counter</a></li>";	
+                  }
+                  else {
+                     echo "<li><a href='?page=$counter'>$counter</a></li>";
+                  }
+               }
+            }
+            else if ($total_no_of_pages > 10) {
+               if($page_no <= 4) {	
+                  for ($counter = 1; $counter < 8; $counter++) {	 
+                     if ($counter == $page_no) {
+                        echo "<li><a class='active'>$counter</a></li>";	
+                     }
+                     else {
+                        echo "<li><a href='?page=$counter'>$counter</a></li>";
+                     }
+                  }
+                  echo "<li><a>...</a></li>";
+                  echo "<li><a href='?page=$second_last'>$second_last</a></li>";
+                  echo "<li><a href='?page=$total_no_of_pages'>$total_no_of_pages</a></li>";
+               }
+            else if ($page_no > 4 && $page_no < $total_no_of_pages - 4) {		 
+               echo "<li><a href='?page=1'>1</a></li>";
+               echo "<li><a href='?page=2'>2</a></li>";
+               echo "<li><a>...</a></li>";
+               for ($counter = $page_no - $adjacents; $counter <= $page_no + $adjacents; $counter++) {			
+                  if ($counter == $page_no) {
+                     echo "<li><a class='active'>$counter</a></li>";
+                  } else {
+                     echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                  }                  
+               }
+               echo "<li><a>...</a></li>";
+               echo "<li><a href='?page=$second_last'>$second_last</a></li>";
+               echo "<li><a href='?page=$total_no_of_pages'>$total_no_of_pages</a></li>";      
+            }
+            else {
+               echo "<li><a href='?page=1'>1</a></li>";
+               echo "<li><a href='?page=2'>2</a></li>";
+               echo "<li><a>...</a></li>";
+
+               for ($counter = $total_no_of_pages - 6; $counter <= $total_no_of_pages; $counter++) {
+                  if ($counter == $page_no) {
+                     echo "<li><a class='active'>$counter</a></li>";	
+                  }
+                  else {
+                     echo "<li><a href='?page=$counter'>$counter</a></li>";
+                  }        
+               }
+            }
+         }
+      echo "
+         <li " . (($page_no >= $total_no_of_pages) ? "class='disabled'" : '' ) . ">
+            <a " . (($page_no < $total_no_of_pages) ? "href='?page=$next_page'" : '' ) . ">Next</a>
+         </li>";
+            if ($page_no < $total_no_of_pages) {
+               echo "<li><a href='?page=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+            }
+      echo "</ul>";
+   }
