@@ -1,6 +1,16 @@
 <?php
    include('./controllers/connection.php');
    include('./controllers/fetch_reports.php');
+
+   // if (isset($_POST['csv'])){
+   //    $fp = fopen('file.csv', 'w');
+
+   //    foreach ($result as $val) {
+   //       fputcsv($fp, $val);
+   //    }
+
+   //    fclose($fp);
+   // }
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +30,11 @@
          <input type="text" name="q" value="<?php if (isset($_GET['q'])) { echo $_GET['q']; } ?>">
          <button>Search</button>
       </form>
+      <?php if($result->num_rows > 0): ?>
+         <form method="POST" action="./controllers/export_to_csv.php<?php if(isset($_GET['q'])) { echo '?q='.$_GET["q"].''; } ?>">
+            <button type="submit" name="export">CSV Export</button>
+         </form>
+      <?php endif; ?>
    </div>
 
    <br>
