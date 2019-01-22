@@ -16,9 +16,12 @@
    <?php include('layout/navbar.php'); ?>
 
    <div class="search-container">
-      <input type="search" name="search">
-      <button>Search</button>
+      <form method="GET">
+         <input type="text" name="q" value="<?php if (isset($_GET['q'])) { echo $_GET['q']; } ?>">
+         <button>Search</button>
+      </form>
    </div>
+
    <br>
    <div class="reports-table">
       <table cellpadding="2" border="1">
@@ -73,7 +76,11 @@
                <?php endwhile; ?>
             <?php else: ?>
                <tr>
-                  <td colspan="11" style="text-align: center;">No reports yet...</td>
+                  <?php if(isset($_GET['q'])): ?>
+                     <td colspan="11" style="text-align: center;">No reports user '<em><?= $_GET['q']; ?></em>'<td>
+                  <?php else: ?>
+                     <td colspan="11" style="text-align: center;">No reports yet...</td>
+                  <?php endif; ?>
                </tr>
             <?php endif; ?>
          </tbody>
