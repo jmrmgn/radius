@@ -1,16 +1,6 @@
 <?php
    include('./controllers/connection.php');
    include('./controllers/fetch_reports.php');
-
-   // if (isset($_POST['csv'])){
-   //    $fp = fopen('file.csv', 'w');
-
-   //    foreach ($result as $val) {
-   //       fputcsv($fp, $val);
-   //    }
-
-   //    fclose($fp);
-   // }
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +9,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="./assets/styles.css">
    <link rel="stylesheet" href="./assets/reports.css">
    <title>Radius - User Account Management</title>
 </head>
@@ -27,17 +18,16 @@
 
    <div class="search-container">
       <form method="GET">
-         <input type="text" name="q" value="<?php if (isset($_GET['q'])) { echo $_GET['q']; } ?>">
+         <input type="text" name="q" value="<?php if (isset($_GET['q'])) { echo $_GET['q']; } ?>" placeholder="Search username">
          <button>Search</button>
       </form>
+      <br>
       <?php if($result->num_rows > 0): ?>
          <form method="POST" action="./controllers/export_to_csv.php<?php if(isset($_GET['q'])) { echo '?q='.$_GET["q"].''; } ?>">
             <button type="submit" name="export">CSV Export</button>
          </form>
       <?php endif; ?>
    </div>
-
-   <br>
    <div class="reports-table">
       <table cellpadding="2" border="1">
          <thead>
