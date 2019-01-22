@@ -2,7 +2,7 @@
    $servername = "localhost";
    $username = "root";
    $password = "";
-   $db_name = "radiusdb";
+   $db_name = "radiusdbschema";
 
    $conn = new mysqli($servername, $username, $password, $db_name);
 

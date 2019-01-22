@@ -14,6 +14,7 @@
    <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
+   <?php include('layout/navbar.php'); ?>
    <div class="main-container">
       <div class="insert-container">
          <form action="controllers/insert.php" method="POST" autocomplete="off">
