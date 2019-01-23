@@ -38,7 +38,7 @@
       <table cellpadding="2" border="1">
          <thead>
             <th>ID</th>
-            <th>HotSpot</th>
+            <!-- <th>HotSpot</th> -->
             <th>Username</th>
             <th>IP Address</th>
             <th>Start time</th>
@@ -55,7 +55,6 @@
                   echo "
                      <tr>
                         <td>".$row['radacctid']."</td>
-                        <td></td>
                         <td>".$row['username']."</td>
                         <td>".$row['framedipaddress']."</td>
                         <td>".$row['acctstarttime']."</td>
