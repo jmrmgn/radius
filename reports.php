@@ -22,12 +22,18 @@
          <button>Search</button>
       </form>
       <br>
+      <br>
       <?php if($result->num_rows > 0): ?>
          <form method="POST" action="./controllers/export_to_csv.php<?php if(isset($_GET['q'])) { echo '?q='.$_GET["q"].''; } ?>">
             <button type="submit" name="export">CSV Export</button>
          </form>
       <?php endif; ?>
    </div>
+   <?php if($result->num_rows > 0): ?>
+      <form method="POST" action="./controllers/delete_record.php<?php if(isset($_GET['q'])) { echo '?q='.$_GET["q"].''; } ?>">
+         <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete?')">Delete record</button>
+      </form>
+   <?php endif; ?>
    <div class="reports-table">
       <table cellpadding="2" border="1">
          <thead>
@@ -82,7 +88,7 @@
             <?php else: ?>
                <tr>
                   <?php if(isset($_GET['q'])): ?>
-                     <td colspan="11" style="text-align: center;">No reports user '<em><?= $_GET['q']; ?></em>'<td>
+                     <td colspan="10" style="text-align: center;">No reports user '<em><?= $_GET['q']; ?></em>'<td>
                   <?php else: ?>
                      <td colspan="11" style="text-align: center;">No reports yet...</td>
                   <?php endif; ?>
